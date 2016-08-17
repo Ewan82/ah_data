@@ -1,0 +1,45 @@
+Program < LAICAM > 
+GNU Copyright (C) 1982-2014 by Jean-Michel Walter. Contributors: Alemu Gonsamo.
+LEAF AREA INDEX, after Campbell
+Output File: laicam_gapfract_373.bmp.txt.txt --- Parameter File: /home/mn811042/obs_data/CIMESLNX/STRUCTFILES/parameter_file_laicam.dat
+Data File: gapfract_373.bmp.txt
+
+Estimated Leaf Absorptance (Campbell & Norman, 1998) = 0.8
+
+Nbr of Zenith Rings = 9 (Width = 10.0 deg)
+Nbr of Azimuth Sectors = 10 (Width = 36.0 deg)
+Nbr of Sky Sectors = 90
+
+Null-gap Segments: Merging Segments Approach
+Nbr of Null-gap Segments (Canopy: Selected View Angle) = 0
+0 Horizon Ring(s) Discarded
+Zenith View Angle (FOV) = 180 deg
+
+Horizontal terrain
+
+--------------------------------------------------
+Horizontal Projection =  0.271
+Vertical Projection   =  1.462
+                         ------
+                  LAI =  1.733
+
+Ellipsoidal X       =    5.406
+SSErr                 =  0.20925
+Mean Tilt Angle       =  16.5 degrees
+Lang & Xiang CIlx     =  0.752
+---------------------------------------------
+Nadir View
+    Sunlit LAI         = 0.863
+    Shaded LAI         = 0.869
+    Ke  (projection)   = 0.925
+    Kbe (C. & N. 1998) = 0.827
+    Fraction Soil      = 0.201
+    Ground Cover       = 0.799
+---------------------------------------------
+Hemisphere View
+    Total Canopy Gap   = 0.238
+    Canopy Openness    = 0.186
+    Canopy Closure     = 0.814
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+

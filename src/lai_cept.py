@@ -308,6 +308,23 @@ ah_other_plots = [5, 10, 15, 28, 33, 38, 48, 53, 59, 68, 73, 79, 84, 93, 98, 103
 # ----------------------------------------------------------------------------------
 
 
+def calc_lai_sec(lai_mean_arr, plot='2007 thinned'):
+    """ Calculates mean LAI for different sections of forest
+    :param lai_mean_arr: rec arr of mean LAI values from two transect walks
+    :param plot: str of which section to calculate LAI for: (2007 thinned, 2014 thinned, ECN)
+    :return: mean LAI
+    """
+    if plot == '2014 thinned':
+        ret_val = np.mean(np.concatenate((lai_mean_arr['lai'][87:266], lai_mean_arr['lai'][416:423])))
+    elif plot == '2007 thinned':
+        ret_val = np.mean(np.concatenate((lai_mean_arr['lai'][0:87], lai_mean_arr['lai'][266:375])))
+    elif plot == 'ECN':
+        ret_val = np.mean(np.concatenate((lai_mean_arr['lai'][375:416], lai_mean_arr['lai'][423:435])))
+    else:
+        raise ValueError('Incorrect plot specified')
+    return ret_val
+
+
 def find_solar_zenith(lon, lat, time):
     """ Calculates solar zenith angle
     :param lon: longitude value
@@ -399,8 +416,8 @@ def calc_lai(lon, lat, time, above_par, below_par):
     r = calc_r(zenith, above_par)
     fb = calc_fb(r)
     # fb = 0.
-    k = calc_extinc_coef_campbell(1., zenith)
-    # k = 1./2.*np.cos(zenith*np.pi/180.)
+    # k = calc_extinc_coef_decagon(1., zenith)
+    k = 1./2.*np.cos(zenith*np.pi/180.)
     A = calc_leaf_absorptivity_term()
     tau = calc_tau(above_par, below_par)
     lai = ((1. - 1./(2.*k))*fb - 1.)*np.log(tau) / A*(1 - 0.47*fb)

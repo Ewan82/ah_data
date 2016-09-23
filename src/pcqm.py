@@ -55,20 +55,19 @@ def find_density_mass(pcqm_arr, classification='all'):
         sum_p2p = np.sum(pcqm_arr['distance_m'])
         no_pcq = len(pcqm_arr['plot'])
         dbhs = pcqm_arr['dbh_cm']
-        meanp2p = calc_mean_point2plant(sum_p2p, no_pcq)
-        density = calc_density(meanp2p)
-        calibration = 4.35  # FIND FROM IAN
-        mass_area = density*(np.pi*(np.mean(dbhs)/2*100.)**2)*calibration
-        ret_val = density, mass_area
     else:
         index = np.where(pcqm_arr['classification'] == classification)[0]
         distances = [pcqm_arr['distance_m'][x] for x in index]
         dbhs = [pcqm_arr['dbh_cm'][x] for x in index]
         sum_p2p = np.sum(distances)
         no_pcq = len(distances)
-        meanp2p = calc_mean_point2plant(sum_p2p, no_pcq)
-        density = calc_density(meanp2p)
-        calibration = 4.35  # FIND FROM IAN
-        mass_area = density*(np.pi*(np.mean(dbhs)/2*100.)**2)*calibration
-        ret_val = density, mass_area
+    meanp2p = calc_mean_point2plant(sum_p2p, no_pcq)
+    density = calc_density(meanp2p)
+    above_g_dry_mass = 0.0678*np.mean(dbhs)**2.619  # Above ground biomass from Eric spread sheet
+    below_g_coarse_root_dry_mass = 0.149*np.mean(dbhs)**2.12  # Below ground biomass from Eric SPA spread sheet
+    above_g_dry_mass_std = 0.0678*np.std(dbhs)**2.619  # Above ground biomass from Eric spread sheet
+    below_g_coarse_root_dry_mass_std = 0.149*np.std(dbhs)**2.12  # Below ground biomass from Eric SPA spread sheet
+    mass_area = (above_g_dry_mass + below_g_coarse_root_dry_mass)*1000*0.5*density
+    mass_area_err = (above_g_dry_mass_std + below_g_coarse_root_dry_mass_std)*1000*0.5*density / np.sqrt(no_pcq)
+    ret_val = density, mass_area, mass_area_err
     return ret_val

@@ -7,6 +7,7 @@ thinned07 = np.concatenate((np.arange(1, 88), np.arange(267, 376)))
 thinned14 = np.concatenate((np.arange(88, 267), np.arange(417, 424)))
 ecn = np.concatenate((np.arange(376, 417), np.arange(424, 436)))
 traps = np.array([10, 144, 281, 227, 325, 373])
+ecn_07 = np.concatenate((thinned07, ecn))
 
 # Files
 lp80 = 'laik_mean.csv'
